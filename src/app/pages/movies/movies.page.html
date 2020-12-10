@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-searchbar
+  [(ngModel)]="title"
+  (ionChange)="moviesearch($event)"
+></ion-searchbar>
+<ion-item>
+  <ion-select [(ngModel)]="type" (ionChange)="moviesearch($event)">
+    <ion-select-option value="">Todo </ion-select-option>
+    <ion-select-option value="movie">Peliculas </ion-select-option>
+    <ion-select-option value="series">Series </ion-select-option>
+    <ion-select-option value="episode">Capitulos </ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-content>
+  <ion-list>
+    <ion-item button *ngFor="let item of (data|async)">
+      {{item.Title}}
+    </ion-item>
+  </ion-list>
+</ion-content>
