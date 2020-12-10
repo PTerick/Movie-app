@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ApimovieService } from 'src/app/services/apimovie.service';
+
 
 @Component({
   selector: 'app-details',
@@ -6,10 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
-
-  constructor() { }
+  data = null
+  constructor(private route: ActivatedRoute, private api: ApimovieService) { }
 
   ngOnInit() {
+    let id = this.route.snapshot.paramMap.get('id')
+     this.api.getdetails(id).subscribe(item =>
+      this.data = item)
+     
+
+  }
+
+  openWeb(){
+    window.open(this.data.Website,'_blank')
   }
 
 }
